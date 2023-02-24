@@ -1,22 +1,17 @@
-import React from 'react'
-import '../styles/App.css';
-import {useSelector,useDispatch} from "react-redux";
-import {changeColor,changeStyle } from '../actions/index.js';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addNumber, subNumber } from '../actions/action';
 
-const App = () => {
-
-const dispatch =useDispatch();
-//code here 
-
+function App() {
+  const counter = useSelector((state)=>state.counter);
+  const dispatch = useDispatch()
   return (
-    <div id="main">
-      <h1 id='text' style={{color: colorState, fontFamily: styleState}}>Newton School</h1>
-      <button id='colorBtn' onClick={()=>dispatch(changeColor(colorState))}>Change Color</button>
-      <button id='styleBtn' onClick={()=>dispatch(changeStyle(styleState))}>Change Style</button>
-
+    <div id='main'>
+        <div data-testid='counter'>{counter}</div>
+        <button onClick={()=>dispatch(addNumber())}>+</button>
+        <button onClick={()=>dispatch(subNumber())}>-</button>
     </div>
-  )
+  );
 }
-
 
 export default App;
